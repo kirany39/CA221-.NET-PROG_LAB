@@ -1,80 +1,42 @@
-----------------------------------------DELEGATES-------------------------------------------
-using System;  
-  
-namespace Delegates  
-{  
-    public class Operation  
-    {  
-        public static void Add(int a, int b)  
-        {  
-            Console.WriteLine("Addition={0}",a + b);  
-        }  
-  
-        public static void Multiple(int a, int b)  
-        {  
-            Console.WriteLine("Multiply={0}", a * b);  
-        }  
-    }   
-  
-    class Program  
-    {  
-        delegate void DelOp(int x, int y);  
-  
-        static void Main(string[] args)  
-        {  
-            // Delegate instantiation  
-            DelOp[] obj =   
-           {  
-               new DelOp(Operation.Add),  
-               new DelOp(Operation.Multiple)  
-           };  
-   
-            for (int i = 0; i < obj.Length; i++)  
-            {  
-                obj[i](2, 5);  
-                obj[i](8, 5);  
-                obj[i](4, 6);  
-            }  
-            Console.ReadLine();  
-        }  
-    }  
-}  
+using System;
 
+namespace Delegates
+{
+    public delegate void EventHandler(string a);
 
--------------------------------------------------------EVENTS--------------------------------------
-using System;  
-  
-namespace Delegates  
-{  
-    public delegate void DelEventHandler();  
-  
-    class Program  
-    {  
-        public static event DelEventHandler add;  
-   
-        static void Main(string[] args)  
-        {  
-            add += new DelEventHandler(USA);  
-            add += new DelEventHandler(India);  
-            add += new DelEventHandler(England);  
-            add.Invoke();  
-   
-            Console.ReadLine();  
-        }  
-        static void USA()  
-        {  
-            Console.WriteLine("USA");    
-        }  
-   
-        static void India()  
-        {  
-            Console.WriteLine("India");  
-        }  
-   
-        static void England()  
-        {  
-            Console.WriteLine("England");  
-        }  
-    }  
-}  
+    public class Operation
+    {
+        public event EventHandler xyz;
 
+        public void Action(string a)
+        {
+            if (xyz != null)
+            {
+                xyz(a);
+                Console.WriteLine(a);
+            }
+            else
+            {
+                Console.WriteLine("Not Registered");
+            }
+        }
+    }
+
+    class Program
+    {
+        public static void CatchEvent(string s)
+        {
+            Console.WriteLine("Method Calling");
+        }
+
+        static void Main(string[] args)
+        {
+            Operation o = new Operation();
+
+            o.Action("Event Calling");
+            o.xyz += new EventHandler(CatchEvent);
+
+            Console.ReadLine();
+        }
+    }
+}
