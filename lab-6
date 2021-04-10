@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab6
+namespace lab-6
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string filepath = "Z:\\CA261-.Net programming\\lab6\\lab6\\bin\\Debug\\lab6.txt";
+            string filepath = "Z:\\CA261-.Net programming\\lab-6\\lab-6\\bin\\Debug\\lab-6.txt";
             Console.WriteLine("WRITING TO A FILE");
             WriteToFile(filepath);
             Console.WriteLine("READING FROM A FILE");
