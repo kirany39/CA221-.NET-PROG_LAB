@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace lab8
+namespace lab-8
 {
     public partial class Form1 : Form
     {
@@ -44,6 +44,7 @@ namespace lab8
 
         }
     }
+    \*
 
     internal class SqlConnection1
     {
@@ -57,5 +58,44 @@ namespace lab8
 
     internal class sqlDataAdapter1
     {
+    }
+    *\
+    private void button1_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmdinsert = new SqlCommand("insert into table_emp values(" + textBox1.Text + ",'" + textBox2.Text + "'," + textBox3.Text + ",'" + textBox4.Text + "'," + textBox5.Text + ")", connection);
+            cmdinsert.CommandType = CommandType.Text;
+            cmdinsert.ExecuteNonQuery();
+            MessageBox.Show("Data Inserted");
+
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmdupdate = new SqlCommand("Update emp SET ename='" + textBox2.Text + "' where eno='" + textBox1.Text + "'", connection);
+            cmdupdate.CommandType = CommandType.Text;
+            cmdupdate.ExecuteNonQuery();
+            MessageBox.Show("Data Upadated");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            {
+                SqlCommand cmddel = new SqlCommand("Delete emp where eno=" + textBox1.Text + "", connection);
+                cmddel.CommandType = CommandType.Text;
+                cmddel.ExecuteNonQuery();
+                MessageBox.Show("Data deleted");
+            }
+
+        }
     }
 }
