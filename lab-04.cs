@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace lab_4multi
+namespace lab_4
 {
     class Program
     {
